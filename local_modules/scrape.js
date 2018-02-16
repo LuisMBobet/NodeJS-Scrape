@@ -15,13 +15,4 @@ var Scrape = function(domain){
   return "Unfinished";
 }
 
-
-
-
-//KnwlInstance.init("This is a string. This was written on the 2nd of June, of 2015.");
-//var dates = KnwlInstance.get("dates");
-//var $ = Cheerio.load(html);
-//return $('li').hasClass('pear')
-
-
 module.exports = Scrape;

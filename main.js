@@ -1,3 +1,3 @@
-var InputProcess = require("inputProcess.js");
-var OutputProcess = require("outputProcess.js");
-var Scrape = require("scrape.js")
+var InputProcess = require("./local_modules/inputProcess.js");
+var OutputProcess = require("./local_modules/outputProcess.js");
+var Scrape = require("./local_modules/scrape.js");
