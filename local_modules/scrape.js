@@ -18,7 +18,7 @@ var Scrape = function(domain){
     if (!error){
 
       $ = Cheerio.load(html,{
-        ignoreWhitespace: true
+        normalizeWhitespace: true
       });
 
         console.log("\n\n Author \n\n");
@@ -26,9 +26,9 @@ var Scrape = function(domain){
         console.log("\n\n URLs \n\n");
         Urls($,url);
         console.log("\n\n Email Addresses \n\n");
-        EmailAddresses($);
+        EmailAddresses(html);
         console.log("\n\n Phone Numbers \n\n");
-        PhoneNumbers($);
+        PhoneNumbers(html);
         return true;
     }
     else{
@@ -76,16 +76,17 @@ var Urls = function($,url){
 }
 
 //EmailAddresses:
-//Input : function $
+//Input : string html
 //Output : void
 //Description : Email addresses are extracted from Cheerio by use of Knwl. All unique email addresses are printed to console.
 
-var EmailAddresses = function($){
+var EmailAddresses = function(html){
   var endLinks = [];
   var emailArray = [];
   var emailAddress;
 
-  KnwlInstance.init($.text());
+  KnwlInstance.init(html);
+
   emailArray = KnwlInstance.get('emails');
   emailArray.forEach(function(element){
     emailAddress = element['address'];
@@ -97,16 +98,17 @@ var EmailAddresses = function($){
 }
 
 //PhoneNumbers :
-//Input : function $
+//Input : string html
 //Output : void
 //Description : All phone numbers are extracted from Cheerio by use of Knwl. All unique phone numbers are printed to console.
 
-var PhoneNumbers = function($){
+var PhoneNumbers = function(html){
   var seenNumbers = [];
   var numberArray = [];
   var number;
 
-  KnwlInstance.init($.text());
+  KnwlInstance.init(html);
+
   numberArray = KnwlInstance.get('phones');
   numberArray.forEach(function(element){
     number = element['phone'];
