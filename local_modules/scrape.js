@@ -28,7 +28,7 @@ var Scrape = function(domain){
         console.log("\n\n Email Addresses \n\n");
         EmailAddresses(html);
         console.log("\n\n Phone Numbers \n\n");
-        PhoneNumbers(html);
+        PhoneNumbers($);
         return true;
     }
     else{
@@ -102,12 +102,12 @@ var EmailAddresses = function(html){
 //Output : void
 //Description : All phone numbers are extracted from Cheerio by use of Knwl. All unique phone numbers are printed to console.
 
-var PhoneNumbers = function(html){
+var PhoneNumbers = function($){
   var seenNumbers = [];
   var numberArray = [];
   var number;
 
-  KnwlInstance.init(html);
+  KnwlInstance.init($.text().replace(/ /g,''));
 
   numberArray = KnwlInstance.get('phones');
   numberArray.forEach(function(element){
